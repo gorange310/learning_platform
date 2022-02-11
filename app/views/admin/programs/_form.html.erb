@@ -1,0 +1,49 @@
+<div>
+  <%= f.label :name, '名稱' %>
+  <%= f.text_field :name, :required => true %>
+</div>
+
+<div>
+  <%= f.label :program_category_id, '主題' %>
+  <%= f.select :program_category_id, program_category_selection, { :include_blank => true } %>
+</div>
+
+<div>
+  <%= f.label :price, '價格' %>
+  <%= f.number_field :price, :min => 0 %>
+</div>
+
+<div>
+  <%= f.label :currency_id, '幣別' %>
+  <%= f.select :currency_id, currency_selection, { :include_blank => true} %>
+</div>
+
+<div>
+  <%= f.label :program_type_id, '類別' %>
+  <%= f.select :program_type_id, program_type_selection, { :include_blank => true} %>
+</div>
+
+<div>
+  <%= f.label :status, '狀態' %>
+  <% Program::STATUS.each do |key, value| %>
+    <label>
+      <%= f.radio_button :status, key.to_s, :required => 'required' %>
+      <%= value %>
+    </label>
+  <% end %>
+</div>
+
+<div>
+  <%= f.label :url, 'URL' %>
+  <%= f.url_field :url %>
+</div>
+
+<div>
+  <%= f.label :description, '描述' %>
+  <%= f.text_area :description %>
+</div>
+
+<div>
+  <%= f.label :validity_period, '效期' %>
+  <%= f.number_field :validity_period, :min => 1, :max => 30, :required => true %>
+<div>

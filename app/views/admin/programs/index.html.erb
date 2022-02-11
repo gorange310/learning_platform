@@ -1,0 +1,40 @@
+<h1>課程</h1>
+<%= link_to '新增課程', new_admin_program_path %>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>名稱</th>
+    <th>主題</th>
+    <th>價格</th>
+    <th>幣別</th>
+    <th>類別</th>
+    <th>狀態</th>
+    <th>URL</th>
+    <th>描述</th>
+    <th>效期</th>
+    <th></th>
+  </tr>
+
+  <% @programs.each do |program| %>
+  <tr>
+    <td><%= program.id %></td>
+    <td><%= program.name %></td>
+    <td><%= program.category.name %></td>
+    <td><%= program.price %></td>
+    <td><%= program.currency.name %></td>
+    <td><%= program.type.name %></td>
+    <td><%= Program::STATUS[program.status.to_sym] %></td>
+    <td>
+      <% if program.url %>
+        <%= link_to '課程連結', program.url, :target => '_blank' %>
+      <% end %>
+    </td>
+    <td><%= program.description %></td>
+    <td><%= program.validity_period %> 天</td>
+    <td>
+      <%= link_to 'Edit', edit_admin_program_path(program) %>
+      <%= link_to 'Delete', admin_program_path(program), :method => :delete, :data => { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+    </td>
+  </tr>
+  <% end %>
+</table>
