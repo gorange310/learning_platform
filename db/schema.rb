@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_11_113320) do
+ActiveRecord::Schema.define(version: 2022_02_11_125409) do
 
   create_table "api_access_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
@@ -66,6 +66,18 @@ ActiveRecord::Schema.define(version: 2022_02_11_113320) do
     t.index ["currency_id"], name: "index_programs_on_currency_id"
     t.index ["program_category_id"], name: "index_programs_on_program_category_id"
     t.index ["program_type_id"], name: "index_programs_on_program_type_id"
+  end
+
+  create_table "user_programs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "program_id"
+    t.date "expired_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["expired_date"], name: "index_user_programs_on_expired_date"
+    t.index ["program_id"], name: "index_user_programs_on_program_id"
+    t.index ["user_id", "program_id"], name: "index_user_programs_on_user_id_and_program_id", unique: true
+    t.index ["user_id"], name: "index_user_programs_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
