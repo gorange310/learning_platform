@@ -4,6 +4,7 @@ module ApiV0
 
     use ApiV0::Auth::Middleware
     include ApiV0::ExceptionHandlers
+    helpers ::ApiV0::Helpers
 
     mount Ping
   end

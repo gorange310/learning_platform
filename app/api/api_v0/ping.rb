@@ -2,7 +2,8 @@ module ApiV0
   class Ping < Grape::API
     desc 'Ping pong'
     get "/ping" do
-      "pong"
+      # "pong"
+      authenticate!
     end
   end
 end
