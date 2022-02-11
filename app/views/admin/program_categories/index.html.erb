@@ -1,0 +1,24 @@
+<h1>課程主題</h1>
+<%= link_to '返回課程列表', admin_root_path %>
+<%= link_to '新增課程主題', new_admin_program_category_path %>
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>名稱</th>
+    <th></th>
+  </tr>
+
+  <% @categories.each do |category| %>
+  <tr>
+    <td><%= category.id %></td>
+    <td><%= category.name %></td>
+    <td>
+      <%= link_to 'Edit', edit_admin_program_category_path(category) %>
+      <% if category.programs.blank? %>
+        <%= link_to 'Delete', admin_program_category_path(category), :method => :delete, :data => { confirm: 'Are you sure?' }, :class => "btn btn-danger" %>
+      <% end %>
+    </td>
+  </tr>
+  <% end %>
+</table>
