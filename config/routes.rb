@@ -7,5 +7,6 @@ Rails.application.routes.draw do
 
     resources :programs
     resources :program_categories
+    resources :currencies
   end
 end

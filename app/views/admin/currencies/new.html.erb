@@ -1,0 +1,10 @@
+<h1>新增幣別</h1>
+
+<%= form_for [:admin, @currency], :method => :post do |f| %>
+
+  <%= render 'form', f: f %>
+
+  <%= f.submit 'Save' %>
+  <%= link_to 'Cancel', admin_programs_path %>
+
+<% end %>
