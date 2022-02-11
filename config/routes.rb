@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     resources :programs
     resources :program_categories
     resources :currencies
+    resources :program_types
   end
 end
