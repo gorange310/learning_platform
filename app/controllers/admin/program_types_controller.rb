@@ -1,4 +1,4 @@
-class Admin::ProgramTypesController < ApplicationController
+class Admin::ProgramTypesController < Admin::AdminController
   before_action :set_type, :only => %w[edit update destroy]
 
   def index

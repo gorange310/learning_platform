@@ -1,4 +1,4 @@
-class Admin::ProgramCategoriesController < ApplicationController
+class Admin::ProgramCategoriesController < Admin::AdminController
   before_action :set_category, :only => %w[edit update destroy]
 
   def index

@@ -1,4 +1,4 @@
-class Admin::CurrenciesController < ApplicationController
+class Admin::CurrenciesController < Admin::AdminController
   before_action :set_currency, :only => %w[edit update destroy]
 
   def index
