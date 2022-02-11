@@ -1,0 +1,2 @@
+class ApiAccessToken < ApplicationRecord
+end
