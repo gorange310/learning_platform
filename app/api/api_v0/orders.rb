@@ -17,5 +17,11 @@ module ApiV0
         raise StandardError, $!
       end
     end
+
+    desc "Get all your orders"
+    get "/orders" do
+      orders = current_user.orders
+      present orders, with: ApiV0::Entities::Order
+    end
   end
 end

@@ -28,4 +28,24 @@ describe ApiV0::Orders do
       end
     end
   end
+
+  context 'GET /api/v0/orders' do
+    it 'should return 200 and orders' do
+      create_orders(user)
+      get '/api/v0/orders', params: { access_key: access_token.key }
+
+      result = JSON.parse(response.body)
+      expect(response.status).to eq(200)
+      expect(result.size).to eq(user.orders.size)
+    end
+  end
+
+  private
+
+  def create_orders(user)
+    programs = create_list(:program, 5, status: 'active')
+    programs.each do |program|
+      OrderCreator.new(user, program.id).send_order
+    end
+  end
 end
