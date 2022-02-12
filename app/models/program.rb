@@ -1,7 +1,7 @@
 class Program < ApplicationRecord
   STATUS = {
-    :on => '上架',
-    :off => '下架'
+    :active => '上架',
+    :inactive => '下架'
   }
 
   belongs_to :category, :class_name => 'ProgramCategory', :foreign_key => 'program_category_id'
@@ -10,4 +10,8 @@ class Program < ApplicationRecord
 
   validates :status, :presence => true
   validates :validity_period, :presence => true
+
+  def is_inactive?
+    self.status == 'inactive'
+  end
 end
