@@ -6,8 +6,8 @@ RSpec.describe OrderCreator do
   let(:user) { create(:user) }
   let(:program) { create(:program, status: status, validity_period: 10) }
 
-  context 'when the user has not bought any program and buying an ON program' do
-    let(:status) { 'on' }
+  context 'when the user has not bought any program and buying an active program' do
+    let(:status) { 'active' }
 
     it 'returns a new order' do
       expect { order_creator }.to change(Order, :count).by(1)
@@ -15,8 +15,8 @@ RSpec.describe OrderCreator do
     end
   end
 
-  context 'when the user has not bought any program and buying an OFF program' do
-    let(:status) { 'off' }
+  context 'when the user has not bought any program and buying an inactive program' do
+    let(:status) { 'inactive' }
 
     it 'returns nothing' do
       expect { order_creator }.to change(Order, :count).by(0)
@@ -24,8 +24,8 @@ RSpec.describe OrderCreator do
     end
   end
 
-  context 'when the user has a valid program and gonna buy it again' do
-    let(:status) { 'on' }
+  context 'when the user has a valid program which is active and gonna buy it again' do
+    let(:status) { 'active' }
 
     it 'returns nothing' do
       order_creator
@@ -34,8 +34,8 @@ RSpec.describe OrderCreator do
     end
   end
 
-  context 'when the user has a invalid program and gonna buy it again' do
-    let(:status) { 'on' }
+  context 'when the user has a invalid program which is active  and gonna buy it again' do
+    let(:status) { 'active' }
 
     it 'returns a new order' do
       travel_to Time.zone.local(2022, 2, 12)

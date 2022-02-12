@@ -8,7 +8,7 @@ class OrderCreator
   def send_order
     @user_program = find_user_program
     ## 若課程已下架，則不能進行購買
-    return false if @program.is_off?
+    return false if @program.is_inactive?
     ## 若使用者已購買過該課程，且目前還可以取用，則不允許重複購買
     return false if @user_program&.is_valid?
 
