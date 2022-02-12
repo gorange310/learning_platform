@@ -1,10 +1,10 @@
 describe ApiV0::Orders do
   let(:user) { create(:user) }
-  let(:program) { create(:program, status: status) }
   let(:access_token) { create(:api_access_token, user: user) }
 
   context 'POST /api/v0/orders' do
     subject(:post_request) { post '/api/v0/orders', params: { access_key: access_token.key, program_id: program.id } }
+    let(:program) { create(:program, status: status) }
 
     context 'a active program' do
       let(:status) { 'active' }
