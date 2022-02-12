@@ -12,19 +12,18 @@ class OrderCreator
     ## 若使用者已購買過該課程，且目前還可以取用，則不允許重複購買
     return false if @user_program&.is_valid?
 
+    ## 紀錄學生課程有效期
+    @user_program ||= @user.user_programs.new(program_id: @program_id)
+    @user_program.expired_date = (Date.today + @program.validity_period)
+    @user_program.save!
+
     ## 購買後須建立購買紀錄
-    new_order = @user.orders.create!(
-      program_id: @program_id,
+    new_order = @user_program.orders.create!(
       status: 'paid',
       amount: @program.price,
       currency_id: @program.currency_id,
       date: Date.today
     )
-
-    ## 紀錄學生課程有效期
-    @user_program = @user.user_programs.find_or_initialize_by(program_id: @program_id)
-    @user_program.expired_date = (Date.today + @program.validity_period)
-    @user_program.save!
 
     return new_order
   end

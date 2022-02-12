@@ -4,8 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :orders
   has_many :user_programs
+  has_many :orders, :through => :user_programs
 
   def is_admin?
     self.role == 'admin'
