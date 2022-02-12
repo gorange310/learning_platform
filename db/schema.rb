@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_12_083201) do
+ActiveRecord::Schema.define(version: 2022_02_12_101759) do
 
   create_table "api_access_tokens", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "user_id"
@@ -26,17 +26,15 @@ ActiveRecord::Schema.define(version: 2022_02_12_083201) do
   end
 
   create_table "orders", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "program_id"
     t.decimal "amount", precision: 10
     t.integer "currency_id"
     t.string "status", default: "unpaid"
     t.date "date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_program_id", null: false
     t.index ["currency_id"], name: "index_orders_on_currency_id"
-    t.index ["program_id"], name: "index_orders_on_program_id"
-    t.index ["user_id"], name: "index_orders_on_user_id"
+    t.index ["user_program_id"], name: "index_orders_on_user_program_id"
   end
 
   create_table "program_categories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
