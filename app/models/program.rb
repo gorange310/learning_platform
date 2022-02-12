@@ -10,4 +10,8 @@ class Program < ApplicationRecord
 
   validates :status, :presence => true
   validates :validity_period, :presence => true
+
+  def is_off?
+    self.status == 'off'
+  end
 end
