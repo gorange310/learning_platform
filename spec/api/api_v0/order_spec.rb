@@ -13,10 +13,10 @@ describe ApiV0::Orders do
         result = JSON.parse(response.body)
 
         expect(response.status).to eq(201)
-        expect(result['program']).to eq(program.name)
+        expect(result['program']['name']).to eq(program.name)
         expect(result['status']).to eq('paid')
         expect(result['amount']).to eq(program.price)
-        expect(result['currency']).to eq(program.currency.name)
+        expect(result['currency']['name']).to eq(program.currency.name)
         expect(result['date'].to_date).to eq(Date.today)
       end
     end
