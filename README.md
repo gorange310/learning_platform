@@ -1,24 +1,37 @@
-# README
+## Requirements
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Rails
+- Ruby
+- Grape
+- Grape entity
+- MySQL 8
 
-Things you may want to cover:
+### Init project
 
-* Ruby version
+---
 
-* System dependencies
+```
+rake db:create
+rake db:migrate
+rake db:seed
+```
 
-* Configuration
+### Start dev server
 
-* Database creation
+---
 
-* Database initialization
+```
+rails s
+```
 
-* How to run the test suite
+### Admin
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+```
+http://localhost:3000/admin
+```
 
-* ...
+### Test
+
+- `bundle exec rake spec`
